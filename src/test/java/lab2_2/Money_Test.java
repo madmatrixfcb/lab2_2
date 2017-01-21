@@ -137,6 +137,19 @@ public class Money_Test {
 		throw new IllegalArgumentException("Currency mismatch");
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void DodawanieInnejWalutyZeroTest() {
+		BigDecimal wartoscA = new BigDecimal(15.50);
+		BigDecimal wartoscB = new BigDecimal(0);
+		Currency walutaA = Currency.getInstance("USD");
+		Currency walutaB = Currency.getInstance("CHF");
+		Money pieniadzeA = new Money(wartoscA, walutaA);
+		Money pieniadzeB = new Money(wartoscB, walutaB);
+		
+		Money dodawanie = pieniadzeA.add(pieniadzeB);
+		
+		throw new IllegalArgumentException("Currency mismatch");
+	}
 	
 
 }

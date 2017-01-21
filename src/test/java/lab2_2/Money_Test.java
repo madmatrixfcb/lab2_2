@@ -186,5 +186,16 @@ public class Money_Test {
 
 		assertThat(odejmowanie.toString(), is(equalTo("15,50 EUR")));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void OdejmowanieInnejWalutyTest() {
+		
+		Money pieniadzeA = new Money(15.50, "USD");
+		Money pieniadzeB = new Money(14.50, "CHF");
+		
+		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
+				
+		throw new IllegalArgumentException("Currency mismatch");
+	}
 
 }

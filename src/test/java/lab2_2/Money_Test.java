@@ -263,5 +263,17 @@ public class Money_Test {
 		
 		assertThat(mnozenie.toString(), is(equalTo("-3,88 USD")));
 	}
+	
+	@Test
+	public void WiekszeOdTrueTest() {
+		Money pieniadzeA = new Money(15.50, "USD");
+		Money pieniadzeB = new Money(14.50, "USD");
+		
+		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(true)));
+	}
+	
+	
+	
+	
 
 }

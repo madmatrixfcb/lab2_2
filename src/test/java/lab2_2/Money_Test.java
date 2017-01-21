@@ -78,10 +78,10 @@ public class Money_Test {
 		Money pieniadzeB = new Money(wartoscB, waluta);
 
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-		
+
 		assertThat(dodawanie.toString(), is(equalTo("30,00 USD")));
 	}
-	
+
 	@Test
 	public void DodawanieTejSamejWalutyUjemnaTest() {
 		BigDecimal wartoscA = new BigDecimal(15.50);
@@ -91,11 +91,11 @@ public class Money_Test {
 		Money pieniadzeB = new Money(wartoscB, waluta);
 
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-			
+
 		assertThat(dodawanie.toString(), is(equalTo("1,00 USD")));
-		
+
 	}
-	
+
 	@Test
 	public void DodawanieTejSamejWalutyZeroTest() {
 		BigDecimal wartoscA = new BigDecimal(15.50);
@@ -103,13 +103,13 @@ public class Money_Test {
 		Currency waluta = Currency.getInstance("USD");
 		Money pieniadzeA = new Money(wartoscA, waluta);
 		Money pieniadzeB = new Money(wartoscB, waluta);
-		
+
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-		
+
 		assertThat(dodawanie.toString(), is(equalTo("15,50 USD")));
 	}
-	
-	@Test (expected = IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void DodawanieInnejWalutyTest() {
 		BigDecimal wartoscA = new BigDecimal(15.50);
 		BigDecimal wartoscB = new BigDecimal(14.50);
@@ -117,13 +117,13 @@ public class Money_Test {
 		Currency walutaB = Currency.getInstance("CHF");
 		Money pieniadzeA = new Money(wartoscA, walutaA);
 		Money pieniadzeB = new Money(wartoscB, walutaB);
-		
+
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-		
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
-	@Test (expected = IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void DodawanieInnejWalutyUjemnaTest() {
 		BigDecimal wartoscA = new BigDecimal(15.50);
 		BigDecimal wartoscB = new BigDecimal(-14.50);
@@ -131,13 +131,13 @@ public class Money_Test {
 		Currency walutaB = Currency.getInstance("CHF");
 		Money pieniadzeA = new Money(wartoscA, walutaA);
 		Money pieniadzeB = new Money(wartoscB, walutaB);
-		
+
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-		
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
-	@Test (expected = IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void DodawanieInnejWalutyZeroTest() {
 		BigDecimal wartoscA = new BigDecimal(15.50);
 		BigDecimal wartoscB = new BigDecimal(0);
@@ -145,11 +145,24 @@ public class Money_Test {
 		Currency walutaB = Currency.getInstance("CHF");
 		Money pieniadzeA = new Money(wartoscA, walutaA);
 		Money pieniadzeB = new Money(wartoscB, walutaB);
-		
+
 		Money dodawanie = pieniadzeA.add(pieniadzeB);
-		
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
+
+	/* Zmiana sposobu deklaracji Money w testach dla szybszego 
+	 * pisania testow */
+
+	@Test
+	public void OdejmowanieTejSamejWalutyTest() {
+
+		Money pieniadzeA = new Money(15.50);
+		Money pieniadzeB = new Money(14.50);
+
+		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
+
+		assertThat(odejmowanie.toString(), is(equalTo("1,00 EUR")));
+	}
 
 }

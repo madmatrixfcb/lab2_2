@@ -151,8 +151,9 @@ public class Money_Test {
 		throw new IllegalArgumentException("Currency mismatch");
 	}
 
-	/* Zmiana sposobu deklaracji Money w testach dla szybszego 
-	 * pisania testow */
+	/*
+	 * Zmiana sposobu deklaracji Money w testach dla szybszego pisania testow
+	 */
 
 	@Test
 	public void OdejmowanieTejSamejWalutyTest() {
@@ -164,7 +165,7 @@ public class Money_Test {
 
 		assertThat(odejmowanie.toString(), is(equalTo("1,00 EUR")));
 	}
-	
+
 	@Test
 	public void OdejmowanieTejSamejWalutyUjemnaTest() {
 
@@ -175,7 +176,7 @@ public class Money_Test {
 
 		assertThat(odejmowanie.toString(), is(equalTo("30,00 EUR")));
 	}
-	
+
 	@Test
 	public void OdejmowanieTejSamejWalutyZeroTest() {
 
@@ -186,124 +187,130 @@ public class Money_Test {
 
 		assertThat(odejmowanie.toString(), is(equalTo("15,50 EUR")));
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void OdejmowanieInnejWalutyTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(14.50, "CHF");
-		
+
 		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
-				
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void OdejmowanieInnejWalutyUjemnaTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(-14.50, "CHF");
-		
+
 		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
-				
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void OdejmowanieInnejWalutyZeroTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(0, "CHF");
-		
+
 		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
-				
+
 		throw new IllegalArgumentException("Currency mismatch");
 	}
-	
+
 	@Test
 	public void MnozenieTejSamejWalutyBigDecimalTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		BigDecimal mnoznik = new BigDecimal(2);
-		
+
 		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
-		
+
 		assertThat(mnozenie.toString(), is(equalTo("31,00 USD")));
 	}
-	
+
 	@Test
 	public void MnozenieTejSamejWalutyBigDecimalUjemnaTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		BigDecimal mnoznik = new BigDecimal(-2);
-		
+
 		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
-		
+
 		assertThat(mnozenie.toString(), is(equalTo("-31,00 USD")));
 	}
-	
+
 	@Test
 	public void MnozenieTejSamejWalutyDoubleTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		double mnoznik = 0.25;
-		
+
 		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
-		
+
 		assertThat(mnozenie.toString(), is(equalTo("3,88 USD")));
 	}
-	
+
 	@Test
 	public void MnozenieTejSamejWalutyDoubleUjemnaTest() {
-		
+
 		Money pieniadzeA = new Money(15.50, "USD");
 		double mnoznik = -0.25;
-		
+
 		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
-		
+
 		assertThat(mnozenie.toString(), is(equalTo("-3,88 USD")));
 	}
-	
+
 	@Test
 	public void WiekszeOdTrueTest() {
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(14.50, "USD");
-		
+
 		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(true)));
 	}
-	
+
 	@Test
 	public void WiekszeOdFalseTest() {
 		Money pieniadzeA = new Money(14.50, "USD");
 		Money pieniadzeB = new Money(15.50, "USD");
-		
+
 		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(false)));
 	}
-	
+
 	@Test
 	public void MniejszeOdTrueTest() {
 		Money pieniadzeA = new Money(14.50, "USD");
 		Money pieniadzeB = new Money(15.50, "USD");
-		
+
 		assertThat(pieniadzeA.lessThan(pieniadzeB), is(equalTo(true)));
 	}
-	
+
 	@Test
 	public void MniejszeOdFlaseTest() {
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(15.50, "USD");
-		
+
 		assertThat(pieniadzeA.lessThan(pieniadzeB), is(equalTo(false)));
 	}
-	
+
 	@Test
 	public void MniejszeRowneTrueTest() {
 		Money pieniadzeA = new Money(15.50, "USD");
 		Money pieniadzeB = new Money(15.50, "USD");
-		
+
 		assertThat(pieniadzeA.lessOrEquals(pieniadzeB), is(equalTo(true)));
 	}
-	
-	
+
+	@Test
+	public void MniejszeRowneFalseTest() {
+		Money pieniadzeA = new Money(15.50, "USD");
+		Money pieniadzeB = new Money(14.50, "USD");
+
+		assertThat(pieniadzeA.lessOrEquals(pieniadzeB), is(equalTo(false)));
+	}
 
 }

@@ -60,6 +60,15 @@ public class Money_Test {
 		assertThat(pieniadze.toString(), is(equalTo("-15,00 CHF")));
 	}
 	
+	@Test
+	public void InnaWalutaZeroTest() {
+		BigDecimal wartosc = new BigDecimal(0);
+		Currency waluta = Currency.getInstance("CHF");
+		Money pieniadze = new Money(wartosc, waluta);
+		
+		assertThat(pieniadze.toString(), is(equalTo("0,00 CHF")));
+	}
+	
 	
 
 }

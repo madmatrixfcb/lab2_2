@@ -15,60 +15,71 @@ public class Money_Test {
 
 	@Test
 	public void DomyslnaWalutaTest() {
-		
+
 		BigDecimal wartosc = new BigDecimal(15);
 		Money pieniadze = new Money(wartosc);
 
 		assertThat(pieniadze.toString(), is(equalTo("15,00 EUR")));
 	}
-	
+
 	@Test
 	public void DomyslnaWalutaUjemnaTest() {
-		
+
 		BigDecimal wartosc = new BigDecimal(-15);
 		Money pieniadze = new Money(wartosc);
 
 		assertThat(pieniadze.toString(), is(equalTo("-15,00 EUR")));
 	}
-	
+
 	@Test
 	public void DomsylnaWalutaZeroTest() {
-		
+
 		BigDecimal wartosc = new BigDecimal(0);
 		Money pieniadze = new Money(wartosc);
-		
+
 		assertThat(pieniadze.toString(), is(equalTo("0,00 EUR")));
 	}
-	
+
 	@Test
 	public void InnaWalutaTest() {
-		
+
 		BigDecimal wartosc = new BigDecimal(15);
 		Currency waluta = Currency.getInstance("CHF");
 		Money pieniadze = new Money(wartosc, waluta);
-		
+
 		assertThat(pieniadze.toString(), is(equalTo("15,00 CHF")));
 	}
-	
+
 	@Test
 	public void InnaWalutaUjemnaTest() {
-		
+
 		BigDecimal wartosc = new BigDecimal(-15);
 		Currency waluta = Currency.getInstance("CHF");
-		Money pieniadze = new Money (wartosc, waluta);
-		
+		Money pieniadze = new Money(wartosc, waluta);
+
 		assertThat(pieniadze.toString(), is(equalTo("-15,00 CHF")));
 	}
-	
+
 	@Test
 	public void InnaWalutaZeroTest() {
 		BigDecimal wartosc = new BigDecimal(0);
 		Currency waluta = Currency.getInstance("CHF");
 		Money pieniadze = new Money(wartosc, waluta);
-		
+
 		assertThat(pieniadze.toString(), is(equalTo("0,00 CHF")));
 	}
-	
-	
+
+	@Test
+	public void DodawanieTejSamejWalutyTest() {
+		BigDecimal wartoscA = new BigDecimal(15.50);
+		BigDecimal wartoscB = new BigDecimal(14.50);
+		Currency waluta = Currency.getInstance("USD");
+		Money pieniadzeA = new Money(wartoscA, waluta);
+		Money pieniadzeB = new Money(wartoscB, waluta);
+
+		Money dodawanie = pieniadzeA.add(pieniadzeB);
+		
+		assertThat(dodawanie.toString(), is(equalTo("30,00 USD")));
+	}
 
 }

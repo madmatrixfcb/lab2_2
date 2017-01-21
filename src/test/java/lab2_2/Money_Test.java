@@ -23,6 +23,15 @@ public class Money_Test {
 	}
 	
 	@Test
+	public void DomyslnaWalutaUjemnaTest() {
+		
+		BigDecimal wartosc = new BigDecimal(-15);
+		Money pieniadze = new Money(wartosc);
+
+		assertThat(pieniadze.toString(), is(equalTo("-15,00 EUR")));
+	}
+	
+	@Test
 	public void InnaWalutaTest() {
 		
 		BigDecimal wartosc = new BigDecimal(15);

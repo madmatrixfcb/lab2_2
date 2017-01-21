@@ -252,5 +252,16 @@ public class Money_Test {
 		
 		assertThat(mnozenie.toString(), is(equalTo("3,88 USD")));
 	}
+	
+	@Test
+	public void MnozenieTejSamejWalutyDoubleUjemnaTest() {
+		
+		Money pieniadzeA = new Money(15.50, "USD");
+		double mnoznik = -0.25;
+		
+		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
+		
+		assertThat(mnozenie.toString(), is(equalTo("-3,88 USD")));
+	}
 
 }

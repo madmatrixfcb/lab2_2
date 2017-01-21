@@ -108,5 +108,19 @@ public class Money_Test {
 		
 		assertThat(dodawanie.toString(), is(equalTo("15,50 USD")));
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void DodawanieInnejWalutyTest() {
+		BigDecimal wartoscA = new BigDecimal(15.50);
+		BigDecimal wartoscB = new BigDecimal(14.50);
+		Currency walutaA = Currency.getInstance("USD");
+		Currency walutaB = Currency.getInstance("CHF");
+		Money pieniadzeA = new Money(wartoscA, walutaA);
+		Money pieniadzeB = new Money(wartoscB, walutaB);
+		
+		Money dodawanie = pieniadzeA.add(pieniadzeB);
+		
+		throw new IllegalArgumentException("Currency mismatch");
+	}
 
 }

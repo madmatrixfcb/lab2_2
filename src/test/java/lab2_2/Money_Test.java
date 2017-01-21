@@ -3,6 +3,7 @@ package lab2_2;
 import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
@@ -19,6 +20,16 @@ public class Money_Test {
 		Money pieniadze = new Money(wartosc);
 
 		assertThat(pieniadze.toString(), is(equalTo("15,00 EUR")));
+	}
+	
+	@Test
+	public void InnaWalutaTest() {
+		
+		BigDecimal wartosc = new BigDecimal(15);
+		Currency waluta = Currency.getInstance("CHF");
+		Money pieniadze = new Money(wartosc, waluta);
+		
+		assertThat(pieniadze.toString(), is(equalTo("15,00 CHF")));
 	}
 
 }

@@ -95,5 +95,18 @@ public class Money_Test {
 		assertThat(dodawanie.toString(), is(equalTo("1,00 USD")));
 		
 	}
+	
+	@Test
+	public void DodawanieTejSamejWalutyZeroTest() {
+		BigDecimal wartoscA = new BigDecimal(15.50);
+		BigDecimal wartoscB = new BigDecimal(0);
+		Currency waluta = Currency.getInstance("USD");
+		Money pieniadzeA = new Money(wartoscA, waluta);
+		Money pieniadzeB = new Money(wartoscB, waluta);
+		
+		Money dodawanie = pieniadzeA.add(pieniadzeB);
+		
+		assertThat(dodawanie.toString(), is(equalTo("15,50 USD")));
+	}
 
 }

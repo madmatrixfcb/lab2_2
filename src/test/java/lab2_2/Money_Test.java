@@ -32,6 +32,15 @@ public class Money_Test {
 	}
 	
 	@Test
+	public void DomsylnaWalutaZeroTest() {
+		
+		BigDecimal wartosc = new BigDecimal(0);
+		Money pieniadze = new Money(wartosc);
+		
+		assertThat(pieniadze.toString(), is(equalTo("0,00 EUR")));
+	}
+	
+	@Test
 	public void InnaWalutaTest() {
 		
 		BigDecimal wartosc = new BigDecimal(15);
@@ -50,5 +59,7 @@ public class Money_Test {
 		
 		assertThat(pieniadze.toString(), is(equalTo("-15,00 CHF")));
 	}
+	
+	
 
 }

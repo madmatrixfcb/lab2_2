@@ -280,6 +280,13 @@ public class Money_Test {
 		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(false)));
 	}
 	
+	@Test
+	public void MniejszeOdTrueTest() {
+		Money pieniadzeA = new Money(14.50, "USD");
+		Money pieniadzeB = new Money(15.50, "USD");
+		
+		assertThat(pieniadzeA.lessThan(pieniadzeB), is(equalTo(true)));
+	}
 	
 	
 	

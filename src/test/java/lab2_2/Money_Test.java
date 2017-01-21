@@ -272,6 +272,14 @@ public class Money_Test {
 		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(true)));
 	}
 	
+	@Test
+	public void WiekszeOdFalseTest() {
+		Money pieniadzeA = new Money(14.50, "USD");
+		Money pieniadzeB = new Money(15.50, "USD");
+		
+		assertThat(pieniadzeA.greaterThan(pieniadzeB), is(equalTo(false)));
+	}
+	
 	
 	
 	

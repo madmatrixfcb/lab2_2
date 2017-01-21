@@ -219,5 +219,16 @@ public class Money_Test {
 				
 		throw new IllegalArgumentException("Currency mismatch");
 	}
+	
+	@Test
+	public void MnozenieTejSamejWalutyBigDecimalTest() {
+		
+		Money pieniadzeA = new Money(15.50, "USD");
+		BigDecimal mnoznik = new BigDecimal(2);
+		
+		Money mnozenie = pieniadzeA.multiplyBy(mnoznik);
+		
+		assertThat(mnozenie.toString(), is(equalTo("31,00 USD")));
+	}
 
 }

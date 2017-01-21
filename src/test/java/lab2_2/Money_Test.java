@@ -208,5 +208,16 @@ public class Money_Test {
 				
 		throw new IllegalArgumentException("Currency mismatch");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void OdejmowanieInnejWalutyZeroTest() {
+		
+		Money pieniadzeA = new Money(15.50, "USD");
+		Money pieniadzeB = new Money(0, "CHF");
+		
+		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
+				
+		throw new IllegalArgumentException("Currency mismatch");
+	}
 
 }

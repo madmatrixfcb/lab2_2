@@ -175,5 +175,16 @@ public class Money_Test {
 
 		assertThat(odejmowanie.toString(), is(equalTo("30,00 EUR")));
 	}
+	
+	@Test
+	public void OdejmowanieTejSamejWalutyZeroTest() {
+
+		Money pieniadzeA = new Money(15.50);
+		Money pieniadzeB = new Money(0);
+
+		Money odejmowanie = pieniadzeA.subtract(pieniadzeB);
+
+		assertThat(odejmowanie.toString(), is(equalTo("15,50 EUR")));
+	}
 
 }

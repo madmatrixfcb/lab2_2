@@ -40,5 +40,15 @@ public class Money_Test {
 		
 		assertThat(pieniadze.toString(), is(equalTo("15,00 CHF")));
 	}
+	
+	@Test
+	public void InnaWalutaUjemnaTest() {
+		
+		BigDecimal wartosc = new BigDecimal(-15);
+		Currency waluta = Currency.getInstance("CHF");
+		Money pieniadze = new Money (wartosc, waluta);
+		
+		assertThat(pieniadze.toString(), is(equalTo("-15,00 CHF")));
+	}
 
 }
